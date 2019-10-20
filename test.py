@@ -7,9 +7,9 @@ import logging
 
 logging.getLogger("requests").setLevel(logging.WARNING)
 """ 你的 APPID AK SK """
-APP_ID = '17542615'
-API_KEY = '4SFIsOq6PHtZRHgBuRkYdWR7'
-SECRET_KEY = 'j24VY4GhyS5vscIDEP8RINI2tmHb9tdd'
+APP_ID = '你的 APPID'
+API_KEY = '你的 AK'
+SECRET_KEY = '你的 SK'
 
 client = AipSpeech(APP_ID, API_KEY, SECRET_KEY)
 def get_audio():
