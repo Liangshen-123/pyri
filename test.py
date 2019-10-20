@@ -54,23 +54,26 @@ def test_andio(text,filename="start"):
     return text
 
 def get_data (tex):
-    from urllib.parse import quote
-    times = str(time.time()).split('.')
-    stamp = times[0]+times[1][:3]
-    quote_data="{'sessionId':'a2873a71807d485c9b1e2762356a4135','robotId':'webbot','userId':'7188fb44ca6546c7b8204198023b3da0','body':{'content':'"+ str(tex) +"'},'type':'txt'}$ts=%s"%stamp
-    headers={
-        'User - Agent': 'Mozilla / 5.0(Windows NT 10.0;Win64;x64) AppleWebKit / 537.36(KHTML, likeGecko) Chrome / 71.0.3578.98Safari / 537.36',
-        'Host': 'i.xiaoi.com',
-        'Cookie': 'cnonce = 626649;sig = f6d9b8b9a06624736e774d67e7afb036c530a6df;XISESSIONID = c47n6e87buz4mrf9z1294vj;Hm_lvt_b5716ef87990056024422ae4fb494926 = 1571453092;Hm_lpvt_b5716ef87990056024422ae4fb494926 = 1571453092;pgv_pvi = 2852883508;pgv_info = ssi = s5508461960;Hm_lvt_822805145daedc4d66ed5fdf3d12cc8b = 1571219830, 1571453945;Hm_lpvt_822805145daedc4d66ed5fdf3d12cc8b = 1571454035;nonce = 501041',
-        'Referer': 'http://i.xiaoi.com/'
-    }
-    url = "http://i.xiaoi.com/robot/webrobot?&callback=__webrobot_processMsg&data="+quote(quote_data)
-    response = requests.get(url,headers=headers)
-    pattern = re.compile(r'\"fontColor\":0,\"content\":\"(.*?)\"')
-    result = pattern.findall(response.text)
-
-    print(result[0])
-    return result[0].replace('\\n',"\n").replace('\\u003c',"<").replace('\\r'," ").replace('\\t'," ")
+    url = "http://api.qingyunke.com/api.php?key=free&appid=0&msg={}".format(tex)
+    res = requests.get(url)
+    return res["content"]
+    # from urllib.parse import quote
+    # times = str(time.time()).split('.')
+    # stamp = times[0]+times[1][:3]
+    # quote_data="{'sessionId':'a2873a71807d485c9b1e2762356a4135','robotId':'webbot','userId':'7188fb44ca6546c7b8204198023b3da0','body':{'content':'"+ str(tex) +"'},'type':'txt'}$ts=%s"%stamp
+    # headers={
+    #     'User - Agent': 'Mozilla / 5.0(Windows NT 10.0;Win64;x64) AppleWebKit / 537.36(KHTML, likeGecko) Chrome / 71.0.3578.98Safari / 537.36',
+    #     'Host': 'i.xiaoi.com',
+    #     'Cookie': 'cnonce = 626649;sig = f6d9b8b9a06624736e774d67e7afb036c530a6df;XISESSIONID = c47n6e87buz4mrf9z1294vj;Hm_lvt_b5716ef87990056024422ae4fb494926 = 1571453092;Hm_lpvt_b5716ef87990056024422ae4fb494926 = 1571453092;pgv_pvi = 2852883508;pgv_info = ssi = s5508461960;Hm_lvt_822805145daedc4d66ed5fdf3d12cc8b = 1571219830, 1571453945;Hm_lpvt_822805145daedc4d66ed5fdf3d12cc8b = 1571454035;nonce = 501041',
+    #     'Referer': 'http://i.xiaoi.com/'
+    # }
+    # url = "http://i.xiaoi.com/robot/webrobot?&callback=__webrobot_processMsg&data="+quote(quote_data)
+    # response = requests.get(url,headers=headers)
+    # pattern = re.compile(r'\"fontColor\":0,\"content\":\"(.*?)\"')
+    # result = pattern.findall(response.text)
+    #
+    # print(result[0])
+    # return result[0].replace('\\n',"\n").replace('\\u003c',"<").replace('\\r'," ").replace('\\t'," ")
 
 
 if __name__ == "__main__":
@@ -83,6 +86,3 @@ if __name__ == "__main__":
     # get_audio()
 
 
-
-"http://i.xiaoi.com/robot/webrobot?&callback=__webrobot_processMsg&data=%7B%27robotId%27%3A%27webbot%27%2C%27userId%27%3A%277188fb44ca6546c7b8204198023b3da0%27%2C%27sessionId%27%3A%27a2873a71807d485c9b1e2762356a4135%27%2C%27body%27%3A%7B%27" \
-"content%27%3A%27None%27%7D%2C%27type%27%3A%27txt%27%7D%24ts%3D1571458850064"

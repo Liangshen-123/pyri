@@ -22,10 +22,9 @@ class CalcFrame(uide.MyFrame1,Thread):
             self.Update()
 
             test.test_andio(text=resa)
-            if (tex == "再见"):
-                exit(0)
-    # 按键事件触发函数
-    # def my_submit(self, event):
+            if (tex == "再见"):exit(0)
+     # 按键事件触发函数
+    # def my_submit(self, event):content
     #     super(CalcFrame, self).my_submit(event)
     #     # thread_obj = threading(self.dead_xun())
     #     # thread_obj.start()
